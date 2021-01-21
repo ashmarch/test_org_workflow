@@ -1,7 +1,7 @@
 name: Edmonds Commerce CI
 on: [push, pull_request]
 env:
-  env-path: '.env'
+  envFile: '.env'
 jobs:
   setup:
     name: Setup ENV Variables
@@ -12,7 +12,7 @@ jobs:
         with:
           script: |
             const script = require(`${process.env.GITHUB_WORKSPACE}/.github/actions/edmondscommerce/parseEnv.js`)
-            script({`github, context, ${process.env.env-path}`})
+            script({github, context})
 
   test:
     needs: [setup]

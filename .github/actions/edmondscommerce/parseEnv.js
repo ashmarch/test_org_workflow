@@ -2,8 +2,8 @@ const fs = require('fs');
 const dotenv = require('dotenv');
 const core = require('@actions/core');
 
-module.exports = ({github, context, envFile}) => {
-    dotenv.config({ path: envFile });
+module.exports = ({github, context}) => {
+    dotenv.config({ path: process.env.envFile });
     const returnedMap = {};
     for (const key in dotenv.parsed) {
         const value = dotenv.parsed[key];
