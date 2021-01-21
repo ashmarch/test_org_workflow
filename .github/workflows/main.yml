@@ -16,7 +16,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: testing
-        if: $TEST === 'success'
         id: tester
         run: |
           echo $TEST
