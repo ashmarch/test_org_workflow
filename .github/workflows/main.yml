@@ -1,16 +1,21 @@
 name: Edmonds Commerce CI
 on: [push, pull_request]
+env:
+  env-path: '.env'
 jobs:
   setup:
     name: Setup ENV Variables
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: c-py/action-dotenv-to-setenv@v2
+      - uses: actions/github-script@v3
         with:
-          env-file: /.env
+          script: |
+            const script = require(`${process.env.GITHUB_WORKSPACE}/.github/actions/edmondscommerce/parseEnv.js`)
+            script({github, context, `${process.env.env-path}`})
 
   test:
+    needs: [setup]
     name: test
     runs-on: ubuntu-latest
     steps:
