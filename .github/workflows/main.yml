@@ -9,7 +9,7 @@ jobs:
         id: dotenv
         uses: falti/dotenv-action@v0.2.5
         with:
-          path: ./.env
+          path: ./.github/.env
 
   test:
     name: test
