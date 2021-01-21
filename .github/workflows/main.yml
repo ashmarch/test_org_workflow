@@ -12,7 +12,7 @@ jobs:
         with:
           script: |
             const script = require(`${process.env.GITHUB_WORKSPACE}/.github/actions/edmondscommerce/parseEnv.js`)
-            script({github, context, `${process.env.env-path}`})
+            script({`github, context, ${process.env.env-path}`})
 
   test:
     needs: [setup]
