@@ -1,9 +1,5 @@
 name: Edmonds Commerce CI
-on:
-  push:
-    branches:
-      - master
-    pull_request:
+on: [push, pull_request]
 jobs:
   setup:
     name: Setup ENV Variables
@@ -11,18 +7,18 @@ jobs:
     steps:
       - name: Read .env file
         id: dotenv
-        uses: falti/dotenv-action@v0.2.5
+        uses: c-py/action-dotenv-to-setenv@v2
         with:
-          path: ./../../.env
+          path: ./.env
 
   test:
     name: test
     runs-on: ubuntu-latest
     steps:
       - name: testing
-        if: ${{ steps.dotenv.outputs.test }} === 'success'
+        if: $TEST === 'success'
         id: tester
         run: |
-          echo "success"
+          echo $TEST
 
 
