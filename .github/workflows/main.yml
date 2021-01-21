@@ -5,9 +5,8 @@ jobs:
     name: Setup ENV Variables
     runs-on: ubuntu-latest
     steps:
-      - name: Read .env file
-        id: dotenv
-        uses: c-py/action-dotenv-to-setenv@v2
+      - uses: actions/checkout@v2
+      - uses: c-py/action-dotenv-to-setenv@v2
         with:
           env-file: /.env
 
